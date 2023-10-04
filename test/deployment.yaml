@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-test
+  namespace: argocd-test
+  labels:
+    envir: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: busy
+          image: busybox
+          command : ["/bin/sh", "-c", "sleep 6000"]
