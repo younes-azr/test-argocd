@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-incubator
+  namespace: argocd-test-incubator
+  labels:
+    envir: incubator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: incubator
+  template:
+    metadata:
+      labels:
+        app: incubator
+    spec:
+      containers:
+        - name: busy
+          image: busybox
+          command : ["/bin/sh", "-c", "sleep 6000"]
